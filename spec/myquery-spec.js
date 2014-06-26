@@ -13,6 +13,9 @@ describe("myQuery", function () {
         '<img class="avatar" />' +
         '<a class="button second"></a>' +
         '<a class="straggler"><label>Click meh</label></a>' +
+      '</div>' +
+      '<div id="profile" class="not-noice">' +
+        '<p>blah</p>' +
       '</div>'
     );
   });
@@ -22,7 +25,7 @@ describe("myQuery", function () {
   });
 
   describe("General each function", function () {
-    xit("iterates through an array", function () {
+    it("iterates through an array", function () {
       var testResult = [];
       var someArray = [10, 20, 30];
       $.each(someArray, function (number) {
@@ -38,31 +41,31 @@ describe("myQuery", function () {
 
   describe("Selectors", function () {
 
-    xit("selects an element by id", function() {
+    it("selects an element by id", function() {
       var elem = $('#profile').get(0);
       expect(elem.className).toEqual('noice');
     });
 
-    xit("selects elements by class name", function() {
+    it("selects elements by class name", function() {
       var buttons = $('.button');
       expect(buttons.get(0).className).toMatch(/first/);
       expect(buttons.get(1).className).toMatch(/second/);
     });
 
-    xit("selects elements by tag name", function() {
+    it("selects elements by tag name", function() {
       var anchors = $('a');
-      expect(anchors.length).toEqual(2)
+      expect(anchors.length).toEqual(2);
       expect(anchors.get(0).className).toEqual("button second");
       expect(anchors.get(1).className).toEqual("straggler");
 
       var images = $('img');
-      expect(images.length).toEqual(1)
+      expect(images.length).toEqual(1);
       expect(images.get(0).className).toEqual("avatar");
     });
   });
 
   describe("Selected elements each function", function () {
-    xit("iterates through all selected elements", function() {
+    it("iterates through all selected elements", function() {
       var testResult = [];
       $('.button').each(function (elem, i) {
         testResult.push(elem.className + ' ' + i);
@@ -72,10 +75,17 @@ describe("myQuery", function () {
       expect(testResult[0]).toEqual("button first 0");
       expect(testResult[1]).toEqual("button second 1");
     });
-  })
+  });
 
   describe("Show and Hide", function () {
     // TODO: Write tests for .show() and .hide()
+    it("hides the selected elements", function(){
+      var divs = $('div').show();
+      expect(divs.get(0)).toBeVisible();
+
+      divs = $('div').hide();
+      expect(divs.get(0)).toBeVisible();
+    });
   });
 
   describe("addClass", function () {
