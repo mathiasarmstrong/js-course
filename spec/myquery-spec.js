@@ -80,17 +80,32 @@ describe("myQuery", function () {
   describe("Show and Hide", function () {
     // TODO: Write tests for .show() and .hide()
     it("hides the selected elements", function(){
-      var divs = $('div').show();
-      expect(divs.get(0)).toBeVisible();
+      expect($('#profile').get(0).style.display ).toEqual('');
+      var divs = $('#profile').hide();
+      expect(divs.get(0).style.display).toEqual('none');
 
-      divs = $('div').hide();
-      expect(divs.get(0)).toBeVisible();
+      divs = $('#profile').show();
+    });
+    it("show a hidden selected elements", function(){
+      var divs = $('#profile').hide();
+      expect(divs.get(0).style.display).toEqual('none');
+
+      divs = $('#profile').show();
+      expect($('#profile').get(0).style.display ).toEqual('block');
     });
   });
-
   describe("addClass", function () {
     // TODO: Write tests for addClass
     // HINT: Test using .toMatch() like the selector test
+    it("adds the selected class name to the object", function(){
+      expect($('#new_name')).toEqual([null]);
+      var divs = $('#profile');
+      name = divs.get(0).className;
+      divs = divs.addClass('other');
+      expect(divs.get(0).className).toEqual(name + " other");
+
+      divs = $('#profile').show();
+    });
   });
 
   describe("Modifying CSS", function () {

@@ -12,26 +12,31 @@
     };
 
     elems.show = function(){
-      elems.each = function(){
-      this.style.display = 'block';
-      return this;
-      };
+      arg = [];
+      elems.each(function(e){
+        e.style.display = "block";
+        arg.push(e);
+      });
+      return QueryWrapper(arg);
     };
 
     elems.hide = function(){
-      elems.each = function(){
-      this.style.display = 'none';
-      };
-      return this;
-    };
-    elems.show = function(){
-      elems.each = function(){
-      this.style.display = 'block';
-      };
-      return this;
+      arg = [];
+      elems.each(function(e){
+        e.style.display = "none";
+        arg.push(e);
+      });
+      return QueryWrapper(arg);
     };
 
-    // elems.addClass
+    elems.addClass = function(newname){
+      arg = [];
+      elems.each(function(e){
+        e.className = e.className + ' '+ newname;
+        arg.push(e);
+      });
+      return QueryWrapper(arg);
+    };
     // elems.css
 
     return elems;
